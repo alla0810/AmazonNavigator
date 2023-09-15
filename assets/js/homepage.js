@@ -3,7 +3,20 @@ var languageButtonsEl = document.querySelector('#language-buttons');
 var nameInputEl = document.querySelector('#SearchBar');
 var repoContainerEl = document.querySelector('#repos-container');
 var repoSearchTerm = document.querySelector('#repo-search-term');
+var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
 
+function getpriceReport(price) {
+    fetch('https://amazon-price1.p.rapidapi.com/priceReport'+price+ apiKey)
+
+    .then(function (response) {
+      console.log(response);
+      return response.json();
+})
+    .then(function(data) {
+        console.log(data)
+       
+    }) 
+  }
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
