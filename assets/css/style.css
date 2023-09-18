@@ -3,14 +3,14 @@
 /*    --primary: #FEBD69;    */
     --primary: #233D53;
 /*    --secondary: #9caea9;*/
-    --secondary: #FA532E;    
+    --secondary: #ff9900;    
     /*--tertiary: #788585;*/
-    --tertiary: #FA532E;
+    --tertiary: #ff9900;
     /*--light-dark: #6f6866;*/
     /*--light-dark: #064B73;*/
-    --light-dark: #FA532E;
+    --light-dark: #ff9900;
     /*--dark: #38302e;*/
-    --dark: #FEBD69;
+    --dark: #ff9900;
     --border-radius: .3rem;
   }
   
