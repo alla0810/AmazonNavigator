@@ -6,13 +6,77 @@ var repoSearchTerm = document.querySelector('#repo-search-term');
 var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
 
 
-
   var getAmazonApi = function (keyword) {
+/*    
     var amazonApiUrl = 'https://amazon-product-reviews-keywords.p.rapidapi.com/product/search?keyword=' + keyword + '&country=US&category=aps';
-  
-    console.log(amazonApiUrl);
-  
-    fetch(amazonApiUrl)
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d',
+        'X-RapidAPI-Host': 'amazon-product-reviews-keywords.p.rapidapi.com'
+      }
+    };
+*/
+/*
+    const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/search?query=Phone&page=1&country=US&category_id=aps';
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d',
+        'X-RapidAPI-Host': 'real-time-amazon-data.p.rapidapi.com'
+      }
+    };
+*/
+
+
+    const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/search?query=' + keyword + '&page=1&country=US&category_id=aps';
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d',
+        'X-RapidAPI-Host': 'real-time-amazon-data.p.rapidapi.com'
+      }
+    };
+
+
+//    console.log(amazonApiUrl);
+/*
+    try {
+      var response = fetch(amazonApiUrl, options);
+//      var result = response.text();
+
+      return response.json();
+
+//      console.log(response);
+
+//      displayAmazonResponse(responseArray);
+    } catch (error) {
+      console.error(error);
+
+      return response.json();
+    }
+*/
+
+    fetch(amazonApiUrl, options)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Response.status");
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+
+      })
+      .catch(error => console.error("Error", error));
+
+
+
+
+
+
+/*
+    var response = fetch(amazonApiUrl, options)
       .then(function (response) 
       {
         if (response.ok) {
@@ -26,6 +90,9 @@ var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
       .catch(function (error) {
         alert('Unable to connect to GitHub');
       });
+*/
+
+
   };
   
 
@@ -38,10 +105,10 @@ var formSubmitHandler = function (event) {
   var userInput = usrInputEl.value.trim();
 
   if (userInput) {
-    getAmazonApi(username);
+    getAmazonApi(userInput);
 
     repoContainerEl.textContent = '';
-    nameInputEl.value = '';
+    usrInputEl.value = '';
   } else {
     alert('Please enter a GitHub username');
   }
