@@ -1,31 +1,44 @@
 var userFormEl = document.querySelector('#user-form');
 var languageButtonsEl = document.querySelector('#language-buttons');
-var nameInputEl = document.querySelector('#SearchBar');
+var usrInputEl = document.querySelector('#SearchBar');
 var repoContainerEl = document.querySelector('#repos-container');
 var repoSearchTerm = document.querySelector('#repo-search-term');
 var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
 
-function getpriceReport(price) {
-    fetch('https://amazon-price1.p.rapidapi.com/priceReport'+price+ apiKey)
 
-    .then(function (response) {
-      console.log(response);
-      return response.json();
-})
-    .then(function(data) {
-        console.log(data)
-       
-    }) 
-  }
+
+  var getAmazonApi = function (keyword) {
+    var amazonApiUrl = 'https://amazon-product-reviews-keywords.p.rapidapi.com/product/search?keyword=' + keyword + '&country=US&category=aps';
+  
+    console.log(amazonApiUrl);
+  
+    fetch(amazonApiUrl)
+      .then(function (response) 
+      {
+        if (response.ok) {
+          response.json().then(function (data) {
+            displayAmazonResponse(data);
+          });
+        } else {
+          alert('Error: ' + response.statusText);
+        }
+      })
+      .catch(function (error) {
+        alert('Unable to connect to GitHub');
+      });
+  };
+  
+
+
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
   console.log("event = " + event);
 
-  var username = nameInputEl.value.trim();
+  var userInput = usrInputEl.value.trim();
 
-  if (username) {
-    getUserRepos(username);
+  if (userInput) {
+    getAmazonApi(username);
 
     repoContainerEl.textContent = '';
     nameInputEl.value = '';
@@ -33,6 +46,16 @@ var formSubmitHandler = function (event) {
     alert('Please enter a GitHub username');
   }
 };
+
+function displayAmazonResponse(data)
+{
+  console.log("displayAmazonResponse");
+  console.log("data:" + data);
+
+}
+
+
+
 
 var buttonClickHandler = function (event) {
   var language = event.target.getAttribute('data-language');
