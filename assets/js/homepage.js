@@ -6,7 +6,6 @@ var repoSearchTerm = document.querySelector('#repo-search-term');
 var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
 
 
-
   var getAmazonApi = function (keyword) {
 /*    
     var amazonApiUrl = 'https://amazon-product-reviews-keywords.p.rapidapi.com/product/search?keyword=' + keyword + '&country=US&category=aps';
@@ -27,8 +26,10 @@ var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
         'X-RapidAPI-Host': 'real-time-amazon-data.p.rapidapi.com'
       }
     };
-*/    
-    const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/search?query=Phone&page=1&country=US&category_id=aps';
+*/
+
+
+    const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/search?query=' + keyword + '&page=1&country=US&category_id=aps';
     const options = {
       method: 'GET',
       headers: {
@@ -36,11 +37,46 @@ var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
         'X-RapidAPI-Host': 'real-time-amazon-data.p.rapidapi.com'
       }
     };
-    
 
-    console.log(amazonApiUrl);
-  
+
+//    console.log(amazonApiUrl);
+/*
+    try {
+      var response = fetch(amazonApiUrl, options);
+//      var result = response.text();
+
+      return response.json();
+
+//      console.log(response);
+
+//      displayAmazonResponse(responseArray);
+    } catch (error) {
+      console.error(error);
+
+      return response.json();
+    }
+*/
+
     fetch(amazonApiUrl, options)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Response.status");
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+
+      })
+      .catch(error => console.error("Error", error));
+
+
+
+
+
+
+/*
+    var response = fetch(amazonApiUrl, options)
       .then(function (response) 
       {
         if (response.ok) {
@@ -54,6 +90,9 @@ var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
       .catch(function (error) {
         alert('Unable to connect to GitHub');
       });
+*/
+
+
   };
   
 
