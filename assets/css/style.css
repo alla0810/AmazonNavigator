@@ -169,7 +169,17 @@
   .card-body {
     padding: 2.5%;
   }
+
+  #P-R-display {
+    width: 31.31%;
+    height: 500px;
+  }
   
+  .price {
+    padding-bottom: 40px;
+  }
+
+
   /* FORM */
   .form-label,
   .form-input,
