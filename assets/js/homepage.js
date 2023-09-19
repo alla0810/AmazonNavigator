@@ -8,11 +8,39 @@ var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
 
 
   var getAmazonApi = function (keyword) {
+/*    
     var amazonApiUrl = 'https://amazon-product-reviews-keywords.p.rapidapi.com/product/search?keyword=' + keyword + '&country=US&category=aps';
-  
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d',
+        'X-RapidAPI-Host': 'amazon-product-reviews-keywords.p.rapidapi.com'
+      }
+    };
+*/
+/*
+    const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/search?query=Phone&page=1&country=US&category_id=aps';
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d',
+        'X-RapidAPI-Host': 'real-time-amazon-data.p.rapidapi.com'
+      }
+    };
+*/    
+    const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/search?query=Phone&page=1&country=US&category_id=aps';
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d',
+        'X-RapidAPI-Host': 'real-time-amazon-data.p.rapidapi.com'
+      }
+    };
+    
+
     console.log(amazonApiUrl);
   
-    fetch(amazonApiUrl)
+    fetch(amazonApiUrl, options)
       .then(function (response) 
       {
         if (response.ok) {
@@ -38,10 +66,10 @@ var formSubmitHandler = function (event) {
   var userInput = usrInputEl.value.trim();
 
   if (userInput) {
-    getAmazonApi(username);
+    getAmazonApi(userInput);
 
     repoContainerEl.textContent = '';
-    nameInputEl.value = '';
+    usrInputEl.value = '';
   } else {
     alert('Please enter a GitHub username');
   }
