@@ -172,11 +172,25 @@
 
   #P-R-display {
     width: 31.31%;
-    height: 500px;
   }
   
   .price {
+    padding-top: 10px;
     padding-bottom: 40px;
+  }
+
+  .reviews {
+    padding-bottom: 40px;
+  }
+
+  .display-box {
+    width: 80%;
+    padding: 3%;
+    margin-left: 9%;
+    font-size: 1.2rem;
+    border: 2px solid var(--light-dark);
+    border-radius: var(--border-radius);
+    background-color: white;
   }
 
 
