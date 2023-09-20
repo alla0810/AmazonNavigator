@@ -80,15 +80,12 @@ function displayAmazonResponse(data, searchTerm)
     var titleEl = document.createElement('span');
     titleEl.textContent = productName;
 
+    var productPrice = "Price: " + productList[i].product_price;
+
+    titleEl.innerHTML += '<br>';
+    titleEl.innerHTML += productPrice;
+
     productEl.appendChild(titleEl);
-/*
-    var statusEl = document.createElement('span');
-    statusEl.classList = 'flex-row align-center';
-
-    statusEl.innerHTML = productList[i].product_url;
-
-//    productEl.appendChild(statusEl);
-*/
 
     AmazonContainerEl.appendChild(productEl);
   }
