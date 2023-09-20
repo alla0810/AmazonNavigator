@@ -73,19 +73,22 @@ function displayAmazonResponse(data, searchTerm)
 
     var productEl = document.createElement('a');
     productEl.classList = 'list-item flex-row justify-space-between align-center';
-    productEl.setAttribute('href', './single-product.html?product=' + productName);
+
+    var productUrl = productList[i].product_url;
+    productEl.setAttribute('href', productUrl);
 
     var titleEl = document.createElement('span');
     titleEl.textContent = productName;
 
     productEl.appendChild(titleEl);
-
+/*
     var statusEl = document.createElement('span');
     statusEl.classList = 'flex-row align-center';
 
-    statusEl.innerHTML = "<i class='fas fa-times status-icon icon-danger'></i>" + productList[i].product_url;
+    statusEl.innerHTML = productList[i].product_url;
 
-    productEl.appendChild(statusEl);
+//    productEl.appendChild(statusEl);
+*/
 
     AmazonContainerEl.appendChild(productEl);
   }
