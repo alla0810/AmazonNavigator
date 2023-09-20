@@ -1,33 +1,12 @@
 var userFormEl = document.querySelector('#user-form');
 var languageButtonsEl = document.querySelector('#language-buttons');
 var usrInputEl = document.querySelector('#SearchBar');
-var repoContainerEl = document.querySelector('#repos-container');
-var repoSearchTerm = document.querySelector('#repo-search-term');
+var AmazonContainerEl = document.querySelector('#Amazon-container');
+var AmazonSearchTerm = document.querySelector('#Amazon-search-term');
 var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
 
 
   var getAmazonApi = function (keyword) {
-/*    
-    var amazonApiUrl = 'https://amazon-product-reviews-keywords.p.rapidapi.com/product/search?keyword=' + keyword + '&country=US&category=aps';
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d',
-        'X-RapidAPI-Host': 'amazon-product-reviews-keywords.p.rapidapi.com'
-      }
-    };
-*/
-/*
-    const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/search?query=Phone&page=1&country=US&category_id=aps';
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d',
-        'X-RapidAPI-Host': 'real-time-amazon-data.p.rapidapi.com'
-      }
-    };
-*/
-
 
     const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/search?query=' + keyword + '&page=1&country=US&category_id=aps';
     const options = {
@@ -39,24 +18,6 @@ var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
     };
 
 
-//    console.log(amazonApiUrl);
-/*
-    try {
-      var response = fetch(amazonApiUrl, options);
-//      var result = response.text();
-
-      return response.json();
-
-//      console.log(response);
-
-//      displayAmazonResponse(responseArray);
-    } catch (error) {
-      console.error(error);
-
-      return response.json();
-    }
-*/
-
     fetch(amazonApiUrl, options)
       .then(response => {
         if (!response.ok) {
@@ -65,33 +26,12 @@ var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
         return response.json();
       })
       .then(data => {
-        console.log(data);
 
+        console.log("here!");
+        console.log(data);
+        displayAmazonResponse(data, keyword);
       })
       .catch(error => console.error("Error", error));
-
-
-
-
-
-
-/*
-    var response = fetch(amazonApiUrl, options)
-      .then(function (response) 
-      {
-        if (response.ok) {
-          response.json().then(function (data) {
-            displayAmazonResponse(data);
-          });
-        } else {
-          alert('Error: ' + response.statusText);
-        }
-      })
-      .catch(function (error) {
-        alert('Unable to connect to GitHub');
-      });
-*/
-
 
   };
   
@@ -107,17 +47,55 @@ var formSubmitHandler = function (event) {
   if (userInput) {
     getAmazonApi(userInput);
 
-    repoContainerEl.textContent = '';
+    AmazonContainerEl.textContent = '';
     usrInputEl.value = '';
   } else {
     alert('Please enter a GitHub username');
   }
 };
 
-function displayAmazonResponse(data)
+function displayAmazonResponse(data, searchTerm)
 {
   console.log("displayAmazonResponse");
-  console.log("data:" + data);
+  console.log(data);
+
+  if (data.status != "OK")
+  {
+    console.log("displayAmazonResponse");    
+  }
+
+  AmazonSearchTerm.textContent = searchTerm;
+
+  var productList = data.data.products;
+
+  for (var i = 0; i < productList.length; i++) {
+    var productName = productList[i].product_title;
+
+    var productEl = document.createElement('a');
+    productEl.classList = 'list-item flex-row justify-space-between align-center';
+    productEl.setAttribute('href', './single-product.html?product=' + productName);
+
+    var titleEl = document.createElement('span');
+    titleEl.textContent = productName;
+
+    productEl.appendChild(titleEl);
+
+    var statusEl = document.createElement('span');
+    statusEl.classList = 'flex-row align-center';
+
+    if (repos[i].open_issues_count > 0) {
+      statusEl.innerHTML =
+        "<i class='fas fa-times status-icon icon-danger'></i>" + data.products[i].product_url;
+    } else {
+      statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
+    }
+
+    productEl.appendChild(statusEl);
+
+    AmazonContainerEl.appendChild(productEl);
+  }
+
+
 
 }
 
