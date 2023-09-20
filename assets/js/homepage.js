@@ -3,7 +3,7 @@ var languageButtonsEl = document.querySelector('#language-buttons');
 var usrInputEl = document.querySelector('#SearchBar');
 var AmazonContainerEl = document.querySelector('#Amazon-container');
 var AmazonSearchTerm = document.querySelector('#Amazon-search-term');
-var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
+var apiKey = '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d';
 
 
   var getAmazonApi = function (keyword) {
@@ -12,7 +12,7 @@ var apiKey = '0470da50ffmsh520f38a3be56e5cp16008bjsnf1d72cb6c156'
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d',
+        'X-RapidAPI-Key': apiKey,
         'X-RapidAPI-Host': 'real-time-amazon-data.p.rapidapi.com'
       }
     };
