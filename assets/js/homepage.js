@@ -83,12 +83,7 @@ function displayAmazonResponse(data, searchTerm)
     var statusEl = document.createElement('span');
     statusEl.classList = 'flex-row align-center';
 
-    if (repos[i].open_issues_count > 0) {
-      statusEl.innerHTML =
-        "<i class='fas fa-times status-icon icon-danger'></i>" + data.products[i].product_url;
-    } else {
-      statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
-    }
+    statusEl.innerHTML = "<i class='fas fa-times status-icon icon-danger'></i>" + productList[i].product_url;
 
     productEl.appendChild(statusEl);
 
