@@ -164,6 +164,7 @@
     background-color: var(--dark);
     padding: 2.5%;
     border-radius: calc(.18rem - 1px) calc(.18rem - 1px) 0 0;
+    text-align: center;
   }
   
   .card-body {
@@ -177,6 +178,10 @@
   .price {
     padding-top: 10px;
     padding-bottom: 40px;
+  }
+
+  .subheader {
+    text-align: center;
   }
 
   .reviews {
