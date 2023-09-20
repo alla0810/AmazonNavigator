@@ -64,7 +64,24 @@
     box-shadow: 3px 3px var(--dark);
     transform: translate(-1px, -1px);
   }
+
+  .review-btn {
+    font-size: 1.3rem;
+    text-decoration:none;
+    padding: 6px 5px;
+    width: 100%;
+    display: block;
+    margin: 5px 0;
+    border-radius: var(--border-radius);
+    color: white;
+    border: none;
+    outline: none;
+    background-color: var(--primary);
+    box-shadow: 3px 3px var(--dark);
+    transform: translate(-1px, -1px);
+  }
   
+
    .btn:hover {
     color: var(--primary);
     background-color: var(--tertiary);
@@ -101,7 +118,8 @@
   
   .hero {
     padding: 3% 4%;
-    background-color: var(--dark);
+/*    background-color: var(--dark);*/
+    background-color: #38302e;    
     color: var(--primary);
   }
   
@@ -110,7 +128,7 @@
   }
   
   .app-title {
-    font-size: 3rem;
+    font-size: 4rem;
     background-color: var(--primary);
     color: var(--dark);
     padding: 0 10px;
