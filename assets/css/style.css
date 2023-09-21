@@ -117,8 +117,9 @@
   }
   
   .hero {
-    padding: 3% 4%;
+    padding: 1% 4%;
 /*    background-color: var(--dark);*/
+
     background-color: #38302e;    
     color: var(--primary);
   }

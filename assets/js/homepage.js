@@ -7,10 +7,10 @@ var reviewContainerEl = document.querySelector('#reviewContainer');
 
 var apiKey = '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d';
 
-//var asinNum = [];
+var asinNum = [];
+//var reviewButtonEl = [];
 
-
-  var getAmazonApi = function (keyword) {
+var getAmazonApi = function (keyword) {
 
     const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/search?query=' + keyword + '&page=1&country=US&category_id=aps';
     const options = {
@@ -37,7 +37,7 @@ var apiKey = '52de1c4d26msh3e7a0f57d6695f0p19417djsn97cd6110728d';
       })
       .catch(error => console.error("Error", error));
 
-  };
+};
   
 
 
@@ -97,19 +97,21 @@ function displayAmazonResponse(data, searchTerm)
     productContainer.appendChild(anchorEl);
 
     devEl = document.createElement("div");
-    var asinNum = productList[i].asin;
-    console.log("asinNum: ", productList[i].asin);
+    asinNum[i] = productList[i].asin;
+    console.log("asinNum: ", asinNum[i]);
 
     var reviewButtonEl = document.createElement('button');
     reviewButtonEl.classList = 'review-btn';
     reviewButtonEl.innerText = "Reviews";
+    reviewButtonEl.value = i;
+    reviewButtonEl.id = productList[i].asin;
 //    reviewButtonEl.type = "submit";
     reviewButtonEl.addEventListener("click", function(event) {
       event.preventDefault();      
       console.log("event: ", event);
+      console.log("id: ", event.target.id);      
 
-      getAmazonReviewApi(asinNum);
-  
+      getAmazonReviewApi(event.target.id, event.target.parentElement);  
     });
     devEl.appendChild(reviewButtonEl);
     productContainer.appendChild(devEl);
@@ -119,13 +121,13 @@ function displayAmazonResponse(data, searchTerm)
 
 }
 
-function getAmazonReviewApi(asinNum)
+function getAmazonReviewApi(asin, insertElement)
 {
   console.log("getAmazonReviewApi");
-  console.log("asin: " + asinNum);
+  console.log(asin);  
 
 //  const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/product-reviews?asin=B07ZPKN6YR&country=US&verified_purchases_only=false&images_or_videos_only=false&page=1&page_size=10';
-  const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/product-reviews?asin=' + asinNum + '&country=US&verified_purchases_only=false&images_or_videos_only=false&page=1&page_size=10';
+  const amazonApiUrl = 'https://real-time-amazon-data.p.rapidapi.com/product-reviews?asin=' + asin + '&country=US&verified_purchases_only=false&images_or_videos_only=false&page=1&page_size=10';
   const options = {
     method: 'GET',
     headers: {
@@ -146,16 +148,16 @@ function getAmazonReviewApi(asinNum)
 
       console.log("here!");
       console.log(data);
-      displayAmazonReviews(data, asinNum);
+      displayAmazonReviews(data, asin, insertElement);
     })
     .catch(error => console.error("Error", error));
 
 }
 
 
-function displayAmazonReviews(data, asinNum)
+function displayAmazonReviews(data, asinNum, insertElement)
 {
-  console.log("displayAmazonReviews");
+  console.log("displayAmazonReviews, asinNum: ", asinNum);
   console.log(data);
 
   if (data.status != "OK")
@@ -163,6 +165,7 @@ function displayAmazonReviews(data, asinNum)
     console.log("displayAmazonReviews Fail!");    
   }
 
+  
   reviewContainerEl.innerHTML = "";
 
   var reviewList = data.data.reviews;  
@@ -175,6 +178,8 @@ function displayAmazonReviews(data, asinNum)
   }
   else
   {
+
+
    for (var i = 0; i < reviewList.length; i++) {
       var cardEl = document.createElement("div");
       cardEl.classList = 'card';
