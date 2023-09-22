@@ -86,6 +86,7 @@ function displayAmazonResponse(data, searchTerm)
     titleEl.innerHTML += productPrice;
 
     titleEl.innerHTML += '<br>';    
+    titleEl.innerHTML += '<br>'; 
     productContainer.appendChild(titleEl);
 
     var productImg = new Image(100);
@@ -179,15 +180,16 @@ function displayAmazonReviews(data, asinNum, insertElement)
   else
   {
 
-
+  var bigCardElement = document.createElement("div");
+    bigCardElement.classList = "card bigCard";
    for (var i = 0; i < reviewList.length; i++) {
       var cardEl = document.createElement("div");
-      cardEl.classList = 'card';
+      cardEl.classList = 'review-card';
       cardEl.textContent = reviewList[i].review_comment;
-      reviewContainerEl.appendChild(cardEl);
+      bigCardElement.appendChild(cardEl);
     }
   }
-
+reviewContainerEl.appendChild(bigCardElement);
 }
 
 

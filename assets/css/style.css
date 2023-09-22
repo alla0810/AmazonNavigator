@@ -178,6 +178,20 @@
     border-radius: var(--border-radius);
   }
   
+  .review-card {
+    background-color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 30px;
+    padding: 10px;
+    border: 7px solid black;
+  }
+
+  .bigCard {
+    padding: 30px;
+  }
+
+
   .card-header {
     color: var(--primary);
     background-color: var(--dark);
