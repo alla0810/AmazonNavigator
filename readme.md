@@ -1,4 +1,4 @@
-#AMAZON NAVIGATOR
+##AMAZON NAVIGATOR
 
 ## Table of Contents
 
@@ -44,6 +44,7 @@ The AMAZON NAVIGATOR is designed for customers to view item reviews and pricing.
 5. Navigate to `<your-github-username>.github.io/<your-repo-name>` and you will find that your new web page has gone live! (For example, if your GitHub username is `lernantino` and the project is `css-demo-site`, your URL would be `lernantino.github.io/css-demo-site`)
 
 ## Usage
+![Screen Shot 2023-09-21 at 9 11 55 PM](https://github.com/alla0810/Group9/assets/140848241/d2fceb3f-3deb-44c9-88ce-962cd194721e)
 
 Navigate to [AMAZON NAVIGATOR](https://alla0810.github.io/Group9/) and view the web page.
 
